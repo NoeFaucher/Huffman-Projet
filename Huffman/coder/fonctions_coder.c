@@ -32,6 +32,7 @@ lettre* compte_occ(char l, lettre* tab, int taille){
   for(int i =0; i < taille;i++){
     if(l == sample[i]){
       tab[i].occ++;
+      break;
     }
   }
   return tab;
