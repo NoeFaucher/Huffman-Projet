@@ -22,9 +22,9 @@ typedef noeud* arbre;
 
 lettre* alloc(int taille);
 
-lettre* init(lettre* tab,int taille);
+lettre* init(lettre* tab, int taille);
 
-lettre* compte_occ(char l, lettre** tab);
+lettre* compte_occ(char l, lettre* tab, int taille);
 
 
 

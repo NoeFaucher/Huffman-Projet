@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "fonctions_coder.h"
 
 
@@ -26,115 +27,12 @@ lettre* init(lettre* tab, int taille){
 }
 
 
-lettre* compte_occ(char l, lettre* tab){
+lettre* compte_occ(char l, lettre* tab, int taille){
   char* sample = " etaonihsrldumwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  switch (variable) {
-    case sample[0]:
-      tab[0].occ++ ;
-      break;
-    case sample[0]:
-      tab[0].occ++ ;
-      break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  for(int i =0; i < taille;i++){
+    if(l == sample[i]){
+      tab[i].occ++;
+    }
   }
-
-  return tab
+  return tab;
 }
