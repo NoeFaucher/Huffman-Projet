@@ -3,7 +3,7 @@ CFLAGS := -Wall -Wextra
 all : exe
 	@echo "Bien compilé"
 
-exe : coder.o fonctions_coder.o
+exe : coder.o fonctions_coder.o tri.o
 	@gcc $^ -o $@
 
 %.o : %.c

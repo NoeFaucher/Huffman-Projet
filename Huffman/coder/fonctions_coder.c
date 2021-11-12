@@ -17,17 +17,16 @@ lettre* alloc(int taille){
   return tab;
 }
 
-lettre* init(lettre* tab, int taille){
+void init(lettre* tab, int taille){
   char* sample = " etaonihsrldumwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(int i = 0; i<taille;i++){
     tab[i].val = sample[i];
     tab[i].occ = 0;
   }
-  return tab;
 }
 
 
-lettre* compte_occ(char l, lettre* tab, int taille){
+void compte_occ(char l, lettre* tab, int taille){
   char* sample = " etaonihsrldumwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(int i =0; i < taille;i++){
     if(l == sample[i]){
@@ -35,5 +34,4 @@ lettre* compte_occ(char l, lettre* tab, int taille){
       break;
     }
   }
-  return tab;
 }
