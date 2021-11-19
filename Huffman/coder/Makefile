@@ -1,15 +1,22 @@
-CFLAGS := -Wall -Wextra
+CFLAGS := -Wall -Wextra -g
+
+SRC = coder.c \
+			fonctions_coder.c \
+			tri.c \
+
+OBJ = $(SRC:.c=.o)
 
 all : exe
 	@echo "Bien compilé"
 
-exe : coder.o fonctions_coder.o tri.o
+exe : $(OBJ)
 	@gcc $^ -o $@
 
-%.o : %.c
+%.o : src/%.c
 	@gcc -c $< -o $@ $(CFLAGS)
 
 clean :
+	@rm -rf obj
 	@rm -f *.o
 	@rm -f exe
 	@echo "Tout est effacé"

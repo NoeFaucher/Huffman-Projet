@@ -4,7 +4,7 @@
 
 */
 typedef struct lettre{
-  char val;
+  char caractere;
   int occ;
 } lettre;
 /*
