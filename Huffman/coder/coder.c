@@ -10,29 +10,30 @@ int main(int argc, char const *argv[]) {
   int taille = (int) strlen(SAMPLE);
 
   char* phrase = "Bonjour je m'appelle Noe abvubdndkndslncqkjnc posdnflkn zjndcponslkjbzvi iodfburvci oieuvi oiduvhohuzo  hoqiurvugao uhaodivf :: ; ;rk % feo * !";
-  lettre* tab = alloc(taille);
+  arbre* tab_temp = alloc(taille);
 
-  init(tab,taille);
-  char a;
-  char b;
+  init(tab_temp,taille);
 
-  for(int i = 0; i<taille;i++){
-    a =tab[i].val;
-    b =tab[i].occ;
-    printf(" %c : %d \n",a,b);
-  }
-
+  // COMPTE LES OCCURENCES DANS LE TEXTE
   for(int i=0;i<(int) strlen(phrase);i++)
-    compte_occ(phrase[i],tab,92);
+    compte_occ(phrase[i],tab_temp,92);
 
-  trirapid(tab,0,strlen(SAMPLE)-1);
+  //TRI LE TABLEAU EN FONCTION DU NOMBRE OCCURENCE
+  trirapid(tab_temp,0,strlen(SAMPLE)-1);
 
-  printf("\n");
-  for(int i = 0; i<taille;i++){
-    a =tab[i].val;
-    b =tab[i].occ;
-    printf(" %c : %d \n",a,b);
+  int i = 0;
+  int new_taille = 0;
+  while(tab_temp[i]->val.occ != 0){
+    new_taille++;
+    i++;
   }
+
+  arbre* tab = alloc(new_taille);
+
+  init_fin(tab_temp, tab, new_taille);
+
+  free(tab_temp);
+
 
   return 0;
 }

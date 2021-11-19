@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include "tri.h"
 
-void echange(lettre* tab,int i,int j){
-	lettre a = tab[i];
+void echange(arbre* tab,int i,int j){
+	arbre a = tab[i];
 	tab[i] = tab[j];
 	tab[j] = a;
 }
 
-void trirapid(lettre* tab,int debut,int fin){
+void trirapid(arbre* tab,int debut,int fin){
 	if(debut<fin){
 		int pivot = piv(tab,debut,fin);
 		trirapid(tab,debut,pivot-1);
@@ -16,11 +16,11 @@ void trirapid(lettre* tab,int debut,int fin){
 	}
 }
 
-int piv(lettre* tab, int debut,int fin){
+int piv(arbre* tab, int debut,int fin){
 	int pivot = debut;
 
 	for(int i=debut;i<=fin;i++){
-		if(tab[pivot].occ<tab[i].occ){
+		if(tab[pivot]->val.occ<tab[i]->val.occ){
 			echange(tab,pivot,pivot+1);
 			if(i!= pivot+1){
 				echange(tab,i,pivot);

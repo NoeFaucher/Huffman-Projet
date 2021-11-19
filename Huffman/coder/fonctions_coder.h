@@ -8,9 +8,7 @@ typedef struct lettre{
   int occ;
 } lettre;
 /*
-"é"
-""
-uint8_t
+
 */
 typedef struct noeud noeud;
 struct noeud{
@@ -20,12 +18,21 @@ struct noeud{
 };
 typedef noeud* arbre;
 
-lettre* alloc(int taille);
+/* *************************************************** */
 
-void init(lettre* tab, int taille);
+arbre* alloc(int taille);
 
-void compte_occ(char l, lettre* tab, int taille);
+void init(arbre* tab, int taille);
 
+void compte_occ(char l, arbre* tab, int taille);
 
+// Met les lettres du tableau temporaire avec plus de 0 occurence dans un tableau trié dans l'ordre croissant
+void init_fin(arbre* tab_temp, arbre* tab, int taille );
+
+arbre CreerArbre(lettre val, arbre filsgauche ,arbre filsdroit);
+
+int EstFeuille(arbre a);
+
+arbre ArbreFromTab(arbre* tab,int taille);
 
 #endif
