@@ -22,7 +22,9 @@ typedef noeud* arbre;
 
 arbre* alloc(int taille);
 
-void init(arbre* tab, int taille);
+void Free_Tab(arbre* tab,int taille);
+
+void init_default(arbre* tab, int taille);
 
 void compte_occ(char l, arbre* tab, int taille);
 
@@ -33,6 +35,13 @@ arbre CreerArbre(lettre val, arbre filsgauche ,arbre filsdroit);
 
 int EstFeuille(arbre a);
 
+arbre* ArbreFromTab_R(arbre* tab,int taille);
+
+// retourne l'arbre final
 arbre ArbreFromTab(arbre* tab,int taille);
+
+void Aff_infixe(arbre a);
+
+void Aff_tab(arbre* tab,int taille);
 
 #endif

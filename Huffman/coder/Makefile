@@ -15,6 +15,7 @@ obj/ :
 
 exe : $(OBJ)
 	@gcc $^ -o $@
+	@echo Compilation terminée.
 
 obj/%.o : src/%.c
 	@echo Compilation de $< ...

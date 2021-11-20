@@ -20,8 +20,15 @@ arbre* alloc(int taille){
   return tab;
 }
 
-void init(arbre* tab, int taille){
-  char* sample = " etaonihsrldumwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+void Free_Tab(arbre* tab,int taille){
+  for(int i=0;i<taille;i++){
+    free(tab[i]);
+  }
+  free(tab);
+}
+
+void init_default(arbre* tab, int taille){
+  char* sample = " etaonihsrldumcwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(int i = 0; i<taille;i++){
     tab[i]->val.caractere = sample[i];
     tab[i]->val.occ = 0;
@@ -31,7 +38,7 @@ void init(arbre* tab, int taille){
 }
 
 void compte_occ(char l, arbre* tab, int taille){
-  char* sample = " etaonihsrldumwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  char* sample = " etaonihsrldumcwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   for(int i =0; i < taille;i++){
     if(l == sample[i]){
       tab[i]->val.occ++;
@@ -42,7 +49,7 @@ void compte_occ(char l, arbre* tab, int taille){
 
 void init_fin(arbre* tab_temp, arbre* tab, int taille ){
   for(int i = 0; i < taille; i++){
-    tab[i] = tab_temp[taille-i];
+    tab[i] = tab_temp[taille-1-i];
   }
 }
 
@@ -64,18 +71,52 @@ int EstFeuille(arbre a){
 }
 
 arbre* ArbreFromTab_R(arbre* tab,int taille){
-  if(taille=1){
-    return tab;
-  }else{
-    arbre arb;
-    lettre l;
-    l.occ = tab[0]->val.occ +tab[1]->val.occ;
-    arb = CreerArbre(l,tab[0],tab[1]);
+  arbre arb;
+  lettre l;
+  l.occ = tab[0]->val.occ +tab[1]->val.occ;
+  arb = CreerArbre(l,tab[0],tab[1]);
+  int new_taille = taille-1;
+  arbre* new_tab = alloc(new_taille);
 
+  if(new_taille == 1){
+    new_tab[0]=arb;
+    return new_tab;
+  }else{
+    int i=2;
+    for(i;i<taille;i++){
+      if(arb->val.occ > tab[i]->val.occ){
+        new_tab[i-2] = tab[i];
+      }else{
+        new_tab[i-2] = arb;
+        break;
+      }
+    }
+    if(i==taille){
+      new_tab[i-2]= arb;
+    }else{
+      for(int j=i;j<taille;j++){
+        new_tab[j-1] = tab[j];
+      }
+    }
+    return(ArbreFromTab_R(new_tab,new_taille));
   }
 }
 
-// retourne l'arbre final
 arbre ArbreFromTab(arbre* tab,int taille){
   return (ArbreFromTab_R(tab,taille))[0];
+}
+
+void Aff_infixe(arbre a){
+  if(a != NULL){
+    Aff_infixe(a->fg);
+    printf("%d ",a->val.occ);
+    Aff_infixe(a->fd);
+  }
+}
+
+void Aff_tab(arbre* tab,int taille){
+  for(int i=0;i<taille;i++){
+    printf("%d ,",tab[i]->val.occ);
+  }
+  printf("\n");
 }
