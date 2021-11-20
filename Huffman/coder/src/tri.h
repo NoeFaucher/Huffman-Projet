@@ -1,6 +1,7 @@
 #ifndef __tri_H__
 #define __tri_H__
 #include "fonctions_coder.h"
+
 /*
  *
  *

@@ -4,19 +4,25 @@ SRC = coder.c \
 			fonctions_coder.c \
 			tri.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=obj/%.o)
 
-all : exe
-	@echo "Bien compilé"
+DEPS = $(OBJ:%.o=%.d)
+
+all : obj/ exe
+
+obj/ :
+	@mkdir -p obj
 
 exe : $(OBJ)
 	@gcc $^ -o $@
 
-%.o : src/%.c
-	@gcc -c $< -o $@ $(CFLAGS)
-
+obj/%.o : src/%.c
+	@echo Compilation de $< ...
+	@gcc -MMD -c $< -o $@ $(CFLAGS)
+# MMD
 clean :
 	@rm -rf obj
-	@rm -f *.o
 	@rm -f exe
 	@echo "Tout est effacé"
+
+-include $(DEPS)
