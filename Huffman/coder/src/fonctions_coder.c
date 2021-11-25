@@ -28,7 +28,7 @@ void Free_Tab(arbre* tab,int taille){
 }
 
 void init_default(arbre* tab, int taille){
-  char* sample = " etaonihsrldumcwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  char* sample = SAMPLE;
   for(int i = 0; i<taille;i++){
     tab[i]->val.caractere = sample[i];
     tab[i]->val.occ = 0;
@@ -37,14 +37,31 @@ void init_default(arbre* tab, int taille){
   }
 }
 
-void compte_occ(char l, arbre* tab, int taille){
-  char* sample = " etaonihsrldumcwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+void compte_occ_carac(char l, arbre* tab, int taille){
+  char* sample = SAMPLE;
   for(int i =0; i < taille;i++){
     if(l == sample[i]){
       tab[i]->val.occ++;
       break;
     }
   }
+}
+
+void compte_occ_txt(char* path, arbre* tab, int taille){
+  FILE* fichier = fopen(path,"r");
+  if(fichier == NULL){
+    tab = NULL;
+  }
+  
+  char caractere;
+  int i =0;
+  do{
+    i++;
+    caractere = fgetc(fichier);
+    compte_occ_carac(caractere,tab,taille);
+  }while(caractere != EOF);
+
+  fclose(fichier);
 }
 
 void init_fin(arbre* tab_temp, arbre* tab, int taille ){
@@ -83,7 +100,7 @@ arbre* ArbreFromTab_R(arbre* tab,int taille){
     return new_tab;
   }else{
     int i=2;
-    for(i;i<taille;i++){
+    for(;i<taille;i++){
       if(arb->val.occ > tab[i]->val.occ){
         new_tab[i-2] = tab[i];
       }else{
@@ -116,7 +133,8 @@ void Aff_infixe(arbre a){
 
 void Aff_tab(arbre* tab,int taille){
   for(int i=0;i<taille;i++){
-    printf("%d ,",tab[i]->val.occ);
+    //printf("%d ,",tab[i]->val.occ);
+    printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
   }
   printf("\n");
 }
