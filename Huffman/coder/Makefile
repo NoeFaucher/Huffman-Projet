@@ -1,6 +1,7 @@
 CFLAGS := -Wall -Wextra -g
 
-SRC = coder.c \
+SRC = main.c \
+			coder.c \
 			fonctions_coder.c \
 			tri.c \
 
