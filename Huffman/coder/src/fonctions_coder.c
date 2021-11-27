@@ -5,9 +5,8 @@
 
 
 /* *************************************************** */
-/*         Focntion pour les tableaus d'arbres         */
+/*         Focntions pour les tableaus d'arbres        */
 /* *************************************************** */
-
 
 arbre* alloc_arb(int taille){
   arbre* tab = malloc(taille * sizeof(arbre));
@@ -51,9 +50,7 @@ void compte_occ_txt(char* path, arbre* tab, int taille){
     tab = NULL;
   }else{
     char caractere;
-    int i =0;
     do{
-      i++;
       caractere = fgetc(fichier);
       compte_occ_carac(caractere,tab,taille);
     }while(caractere != EOF);
@@ -115,7 +112,7 @@ ArbreFromTab_R(tab,taille);
 }
 
 /* *************************************************** */
-/*             Fonction pour les arbres                */
+/*             Fonctions pour les arbres               */
 /* *************************************************** */
 
 int EstFeuille(arbre a){
@@ -132,27 +129,24 @@ int Existence(lettre l, arbre a){
   }
 }
 
-char* seek_code(arbre a,lettre l,char code[500]){
+char* seek_code(arbre a,lettre l,char* code){
   if(EstFeuille(a)){
     return code;
   }else if(Existence(l,a->fg)){
-    //char* test = code;
-
     return seek_code(a->fg,l,Append(code,"0"));
   }else if(Existence(l,a->fd)){
     return seek_code(a->fd,l,Append(code,"1"));
   }else{
-    return "\0";
+    return "";
   }
 }
 
 /* *************************************************** */
-/*       Focntion pour les tableaus de lettres         */
+/*       Focntions pour les tableaus de lettres        */
 /* *************************************************** */
 
 lettre* alloc_let(int taille){
   lettre* tab = malloc(taille * sizeof(lettre));
-
   return tab;
 }
 
@@ -169,18 +163,48 @@ void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille){
 }
 
 void init_code(arbre huff, lettre* tab, int taille_tab){
-
   for(int i =0;i<taille_tab;i++){
-    tab[i].code = seek_code(huff,tab[i],"\0");
-
+    tab[i].code = seek_code(huff,tab[i],"");
   }
 }
 
+void file_header(lettre* tab,int taille,char* path_dest){
+  FILE* fichier_hfzip = fopen(path_dest,"w+");
+  for(int i=0;i<taille-1;i++){
+    fprintf(fichier_hfzip,"%c:%d;",tab[i].caractere,tab[i].occ);
+  }
+  fprintf(fichier_hfzip,"%c:%d\n",tab[taille-1].caractere,tab[taille-1].occ);
+  fclose(fichier_hfzip);
+}
 
+char* carac_to_code(lettre* tab, int taille, char c){
+  for(int i =0;i<taille;i++){
+    if(tab[i].caractere == c){
+      return tab[i].code;
+    }
+  }
+  return "#err#";
+}
 
+void encoder(lettre* tab, int taille, char* path_src, char* path_dest){
+  FILE* fichier_txt = fopen(path_src,"r");
+  FILE* fichier_hfzip = fopen(path_dest,"a");
+
+  char caractere = fgetc(fichier_txt);
+
+  while(caractere != EOF){
+
+    fputs(carac_to_code(tab,taille,caractere),fichier_hfzip);
+
+    caractere = fgetc(fichier_txt);
+  }
+
+  fclose(fichier_txt);
+  fclose(fichier_hfzip);
+}
 
 /* *************************************************** */
-
+/*             Focntions suplémentaires                */
 /* *************************************************** */
 
 void Aff_infixe(arbre a){
@@ -193,20 +217,30 @@ void Aff_infixe(arbre a){
 
 void Aff_tab(lettre* tab,int taille){
   for(int i=0;i<taille;i++){
-    printf("%d ,",tab[i].occ);
+    printf("%c : %d , %s\n",tab[i].caractere,tab[i].occ,tab[i].code);
     //printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
   }
   printf("\n");
 }
 
-char* Append(char a[500],char b[500]){
-  int i=0;
-  for(;a[i]!='\0';i++);
+char* Append(char* a,char* b){
 
-  for(int j=0;b[j]!='\0';j++,i++){
-    a[i]=b[j];
+  if(a == ""){
+    return b;
   }
-  a[i]='\0';
 
-  return a;
+  int taille_a = strlen(a);
+  int taille_b = strlen(b);
+
+  int taille_res = taille_a +taille_b;
+  char* res = malloc(taille_res*sizeof(char));
+
+  for(int i=0;i<taille_a;i++){
+    res[i]=a[i];
+  }
+  for(int j=0;j<taille_b;j++){
+    res[j+taille_a]=b[j];
+  }
+
+  return res;
 }

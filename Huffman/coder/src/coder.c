@@ -5,7 +5,7 @@
 
 #include "coder.h"
 
-int coder(char* path) {
+int coder(char* path_file,char* path_hfzip) {
   int taille = (int) strlen(SAMPLE);
 
   arbre* tab_arb_temp = alloc_arb(taille);
@@ -15,7 +15,7 @@ int coder(char* path) {
 
   // COMPTE LES OCCURENCES DANS LE TEXTE
 
-  compte_occ_txt(path,tab_arb_temp,taille);
+  compte_occ_txt(path_file,tab_arb_temp,taille);
   if(tab_arb_temp ==NULL){   //Verifie s'il y a une erreur dans compte_occ_txt
     printf("Erreur comptage d'occurence");
     return -1;
@@ -51,9 +51,10 @@ int coder(char* path) {
 
   init_code(arb_huff,tab_let,new_taille);
 
+  //Aff_tab(tab_let,new_taille);
+  file_header(tab_let,new_taille,path_hfzip);
+  encoder(tab_let,new_taille,path_file,path_hfzip);
 
-  //Aff_infixe(arb_huff);
-  //printf("\n");
 
   Free_Tab_arb(tab_arb,new_taille);
 

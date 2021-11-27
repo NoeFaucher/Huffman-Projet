@@ -5,7 +5,7 @@
 #include "tri.h"
 
 
-int coder(char* path);
+int coder(char* path_file,char* path_hfzip);
 
 
 

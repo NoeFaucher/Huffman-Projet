@@ -22,7 +22,7 @@ struct noeud{
 typedef noeud* arbre;
 
 /* *************************************************** */
-/*         Focntion pour les tableaus d'arbres         */
+/*         Focntions pour les tableaus d'arbres        */
 /* *************************************************** */
 
 arbre* alloc_arb(int taille);
@@ -46,7 +46,7 @@ arbre* ArbreFromTab_R(arbre* tab,int taille);
 arbre ArbreFromTab(arbre* tab,int taille);
 
 /* *************************************************** */
-/*             Fonction pour les arbres                */
+/*             Fonctions pour les arbres               */
 /* *************************************************** */
 
 int EstFeuille(arbre a);
@@ -56,7 +56,7 @@ int Existence(lettre l, arbre a);
 char* seek_code(arbre a, lettre l, char* code);
 
 /* *************************************************** */
-/*       Focntion pour les tableaus de lettres         */
+/*       Focntions pour les tableaus de lettres        */
 /* *************************************************** */
 
 lettre* alloc_let(int taille);
@@ -67,12 +67,15 @@ void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille);
 
 void init_code(arbre huff, lettre* tab, int taille_tab);
 
+void file_header(lettre* tab,int taille,char* path_dest);
 
+char* carac_to_code(lettre* tab, int taille, char c);
+
+void encoder(lettre* tab, int taille, char* path_src,char* path_dest);
 
 /* *************************************************** */
-
+/*             Focntions suplémentaires                */
 /* *************************************************** */
-
 
 void Aff_infixe(arbre a);
 
