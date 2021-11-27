@@ -53,6 +53,8 @@ int EstFeuille(arbre a);
 
 int Existence(lettre l, arbre a);
 
+char* seek_code(arbre a, lettre l, char* code);
+
 /* *************************************************** */
 /*       Focntion pour les tableaus de lettres         */
 /* *************************************************** */
@@ -60,6 +62,8 @@ int Existence(lettre l, arbre a);
 lettre* alloc_let(int taille);
 
 void Free_Tab_let(lettre* tab);
+
+void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille);
 
 void init_code(arbre huff, lettre* tab, int taille_tab);
 
@@ -72,6 +76,8 @@ void init_code(arbre huff, lettre* tab, int taille_tab);
 
 void Aff_infixe(arbre a);
 
-void Aff_tab(arbre* tab,int taille);
+void Aff_tab(lettre* tab,int taille);
+
+char* Append(char* a,char* b);
 
 #endif

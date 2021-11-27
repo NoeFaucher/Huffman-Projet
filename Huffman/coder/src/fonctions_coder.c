@@ -132,6 +132,20 @@ int Existence(lettre l, arbre a){
   }
 }
 
+char* seek_code(arbre a,lettre l,char code[500]){
+  if(EstFeuille(a)){
+    return code;
+  }else if(Existence(l,a->fg)){
+    //char* test = code;
+
+    return seek_code(a->fg,l,Append(code,"0"));
+  }else if(Existence(l,a->fd)){
+    return seek_code(a->fd,l,Append(code,"1"));
+  }else{
+    return "\0";
+  }
+}
+
 /* *************************************************** */
 /*       Focntion pour les tableaus de lettres         */
 /* *************************************************** */
@@ -146,10 +160,21 @@ void Free_Tab_let(lettre* tab){
   free(tab);
 }
 
-void init_code(arbre huff, lettre* tab, int taille_tab){
-
+void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille){
+  for(int i =0;i<taille;i++){
+    tab_let[i].caractere = tab_abr[i]->val.caractere;
+    tab_let[i].occ = tab_abr[i]->val.occ;
+    tab_let[i].code = tab_abr[i]->val.code;
+  }
 }
 
+void init_code(arbre huff, lettre* tab, int taille_tab){
+
+  for(int i =0;i<taille_tab;i++){
+    tab[i].code = seek_code(huff,tab[i],"\0");
+
+  }
+}
 
 
 
@@ -166,10 +191,22 @@ void Aff_infixe(arbre a){
   }
 }
 
-void Aff_tab(arbre* tab,int taille){
+void Aff_tab(lettre* tab,int taille){
   for(int i=0;i<taille;i++){
-    printf("%d ,",tab[i]->val.occ);
+    printf("%d ,",tab[i].occ);
     //printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
   }
   printf("\n");
+}
+
+char* Append(char a[500],char b[500]){
+  int i=0;
+  for(;a[i]!='\0';i++);
+
+  for(int j=0;b[j]!='\0';j++,i++){
+    a[i]=b[j];
+  }
+  a[i]='\0';
+
+  return a;
 }

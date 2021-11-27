@@ -8,8 +8,8 @@
 int coder(char* path) {
   int taille = (int) strlen(SAMPLE);
 
-
   arbre* tab_arb_temp = alloc_arb(taille);
+
 
   init_default_arb(tab_arb_temp,taille);
 
@@ -34,23 +34,24 @@ int coder(char* path) {
 
   arbre* tab_arb = alloc_arb(new_taille);
 
+  lettre* tab_let = alloc_let(new_taille);
+
   init_fin_arb(tab_arb_temp, tab_arb, new_taille);
 
-  Aff_tab(tab_arb,new_taille);
+  //
+  //Aff_tab(tab_arb,new_taille);
+  //
+
+  cp_let_arb(tab_arb,tab_let,new_taille);
 
   arbre arb_huff = malloc(sizeof(noeud));
   arb_huff = ArbreFromTab(tab_arb,new_taille);
 
-  //Aff_infixe(arb_huff);
 
 
-  //Aff_infixe(arb_huff);
-
-  int a = Existence(l,arb_huff);
+  init_code(arb_huff,tab_let,new_taille);
 
 
-
-  //void init_code(arb_huff,tab,new_taille);
   //Aff_infixe(arb_huff);
   //printf("\n");
 
