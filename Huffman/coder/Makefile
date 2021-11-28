@@ -1,10 +1,12 @@
 CFLAGS := -Wall -Wextra -g
 
 SRC = main.c \
+			fonctions_communes.c \
 			coder.c \
 			fonctions_coder.c \
 			decoder.c \
 			fonctions_decoder.c \
+			structures.c \
 			tri.c \
 
 OBJ = $(SRC:%.c=obj/%.o)

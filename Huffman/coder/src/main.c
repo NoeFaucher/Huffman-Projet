@@ -9,16 +9,20 @@
 
 int main(int argc, char const *argv[]) {
 
-  char* path_file = "h2g2.txt";
-  char* path_hfzip = "h2g2.hfzip";
+  char* path_file = "test.txt";
+  char* path_hfzip = "test.hfzip";
 
   //printf("\\");
 
-  if (!coder(path_file,path_hfzip)){
+  if (coder(path_file,path_hfzip)){
+    printf("Erreur de codage de %s\n",path_file);
     return -1;
   }
 
-
+  if (decoder(path_hfzip,"new_file.txt")){
+    printf("Erreur de codage de %s\n",path_file);
+    return -1;
+  }
 
   return 0;
 }

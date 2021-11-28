@@ -2,6 +2,7 @@
 #define  _CODER_H_
 
 #include "fonctions_coder.h"
+#include "fonctions_communes.h"
 #include "tri.h"
 
 

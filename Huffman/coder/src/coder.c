@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 #include "coder.h"
+
 
 int coder(char* path_file,char* path_hfzip) {
   int taille = (int) strlen(SAMPLE);
