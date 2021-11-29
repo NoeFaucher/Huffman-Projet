@@ -67,7 +67,9 @@ char* Append(char* a,char* b){
   if(a == ""){
     return b;
   }
-
+  if(b==""){
+    return a;
+  }
   int taille_a = strlen(a);
   int taille_b = strlen(b);
 

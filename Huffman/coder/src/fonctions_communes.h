@@ -3,6 +3,7 @@
 
 #include "structures.h"
 
+
 /* Les fonctions ici sont les fonctions communes au codage et au decodage
  *
  * Les fonctions liées uniquements au codage sont dans "fonctions_coder.h".

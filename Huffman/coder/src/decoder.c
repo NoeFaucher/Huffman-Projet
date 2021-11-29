@@ -4,16 +4,17 @@
 
 #include "decoder.h"
 
-#include "fonctions_coder.h"
-
 int decoder(char* path_hfzip, char* path_file){
 
-  lettre* tab = alloc_let(16);
+  int taille_tab = compteur_tab(path_hfzip);
+
+  lettre* tab = alloc_let(taille_tab);
 
 
   read_file_header(tab,path_hfzip);
 
-  Aff_tab(tab,16);
+  //Aff_tab(tab,taille_tab);
+
   //Récupération du tableau de puis l'entete du fichier
   if(1){
     printf("Erreur dans la récuperation du tableau d'iteration.\n");

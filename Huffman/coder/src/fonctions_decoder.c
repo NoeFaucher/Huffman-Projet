@@ -5,13 +5,41 @@
 #include "fonctions_decoder.h"
 
 
+/* *************************************************** */
+/*       Focntions sur les tableaus de lettres         */
+/* *************************************************** */
+
+int compteur_tab(char* path_file){
+  int i=1;
+
+  FILE* fichier = fopen(path_file,"r");
+  if(fichier==NULL){
+    return -1;
+  }
+
+  char curent = fgetc(fichier);
+  char next = fgetc(fichier);
+  char next_next =fgetc(fichier);
+
+  while(!((curent=='\n') && (next !=':'))){
+    if(curent == ';' && next_next==':'){
+      i++;
+    }
+    curent =next;
+    next = next_next;
+    next_next = fgetc(fichier);
+    //printf("%d:\n curent : %c\n next : %c\n next_next : %c\n",i,curent,next,next_next);
+  }
+  fclose(fichier);
+  return i;
+}
 
 void read_file_header(lettre* tab,char* path_file){
   FILE* fichier = fopen(path_file,"r");
 
   int finish = 0;
 
-  char caractere = fgetc(fichier);
+  //char caractere = fgetc(fichier);
   char bin;
   char* occ;
   char next;
@@ -43,6 +71,9 @@ void read_file_header(lettre* tab,char* path_file){
 
 }
 
+/* *************************************************** */
+/*             Focntions suplémentaires                */
+/* *************************************************** */
 
 int ChartoInt(char* str){
   int taille = strlen(str);

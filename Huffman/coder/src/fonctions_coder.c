@@ -69,9 +69,10 @@ char* seek_code(arbre a,lettre l,char* code){
   if(EstFeuille(a)){
     return code;
   }else if(Existence(l,a->fg)){
-    return seek_code(a->fg,l,Append(code,"0"));
+    //printf("code : %s",code);
+    return seek_code(a->fg,l,Append(code,"0")); //Append(code,"0")
   }else if(Existence(l,a->fd)){
-    return seek_code(a->fd,l,Append(code,"1"));
+    return seek_code(a->fd,l,Append(code,"1")); //Append(code,"1")
   }else{
     return "";
   }

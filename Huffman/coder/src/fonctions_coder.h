@@ -4,6 +4,7 @@
 #define SAMPLE ((char*)" etaonihsrldumcwyfgpbvkjxqz\n!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 #include "structures.h"
+#include "fonctions_communes.h"
 
 /* Les fonctions ici sont les fonctions nécessaires uniquements
  * pour le codage.
