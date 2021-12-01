@@ -21,13 +21,6 @@
  // retourne l'arbre final
  arbre ArbreFromTab(arbre* tab,int taille);
 
- /* *************************************************** */
- /*       Focntions sur les tableaus de lettres         */
- /* *************************************************** */
-
- // copie la valeur de la racine de chaque arbre
- // d'un tableau d'arbres dans un tableau de lettres
- void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille);
 
  /* *************************************************** */
  /*             Focntions suplémentaires                */

@@ -25,10 +25,30 @@ void read_file_header(lettre* tab,char* path_file);
 
 
 /* *************************************************** */
+/*       Focntions sur les tableaus d'arbres           */
+/* *************************************************** */
+
+// copie la valeur de la racine de chaque arbre
+// d'un tableau de lettres dans un tableau d'arbres
+void cp_let_arb(lettre* tab_let, arbre* tab_abr, int taille);
+
+
+/* *************************************************** */
+/*               Focntions sur les arbres              */
+/* *************************************************** */
+
+char seek_char(arbre arb,FILE* fichier_hfzip,char last);
+
+void decode(arbre huff, char* path_hfzip, char* path_file);
+
+
+/* *************************************************** */
 /*             Focntions suplémentaires                */
 /* *************************************************** */
 
-int ChartoInt(char* str);
+int StrtoInt(char* str);
+
+char* ChartoStr(char c);
 
 // retourn a à la puissance b
 // Avec a!=0 ou b!=0

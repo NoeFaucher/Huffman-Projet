@@ -43,6 +43,11 @@ char* seek_code(arbre a, lettre l, char* code);
 
 void init_code(arbre huff, lettre* tab, int taille_tab);
 
+// copie la valeur de la racine de chaque arbre
+// d'un tableau d'arbres dans un tableau de lettres
+void cp_abr_let(arbre* tab_abr, lettre* tab_let, int taille);
+
+
 void file_header(lettre* tab,int taille,char* path_dest);
 
 char* carac_to_code(lettre* tab, int taille, char c);
@@ -55,7 +60,7 @@ void encoder(lettre* tab, int taille, char* path_src,char* path_dest);
 
 void Aff_infixe(arbre a);
 
-void Aff_tab(lettre* tab,int taille);
+void Aff_tab(arbre* tab,int taille);
 
 
 #endif

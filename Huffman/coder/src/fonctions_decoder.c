@@ -41,14 +41,15 @@ void read_file_header(lettre* tab,char* path_file){
 
   //char caractere = fgetc(fichier);
   char bin;
-  char* occ;
+
   char next;
 
   int i =0;
 
+  char* occ;
 
   while(!finish){
-    occ = "";
+    occ ="";
 
     tab[i].caractere = fgetc(fichier);
 
@@ -56,66 +57,144 @@ void read_file_header(lettre* tab,char* path_file){
     bin = fgetc(fichier);
 
     next = fgetc(fichier);
+
+
     do{
-      occ = Append(occ,&next);
-      next = fgetc(fichier);
-    }while((next!=';')||(next!='\n'));
+    occ = Append(occ,ChartoStr(next));      //ChartoStr(next)
+    next = fgetc(fichier);
 
-    tab[i].occ = ChartoInt(occ);
+  }while(!((next==';')||(next=='\n')));
 
-    if(next!='\n'){
+    tab[i].occ = StrtoInt(occ);
+
+    if(next=='\n'){
       finish = 1;
     }
     i++;
   }
+  fclose(fichier);
+}
+
+
+/* *************************************************** */
+/*       Focntions sur les tableaus d'arbres           */
+/* *************************************************** */
+
+void cp_let_arb(lettre* tab_let, arbre* tab_abr, int taille){
+  for(int i =0;i<taille;i++){
+    tab_abr[i]->val.caractere = tab_let[i].caractere;
+
+    tab_abr[i]->val.occ = tab_let[i].occ;
+  }
+}
+
+
+/* *************************************************** */
+/*               Focntions sur les arbres              */
+/* *************************************************** */
+
+char seek_char(arbre arb,FILE* fichier_hfzip,char last){
+  if(EstFeuille(arb)){
+    return arb->val.caractere;
+  }else{
+    if(last != ' '){
+      if(last=='0'){
+        return seek_char(arb->fg,fichier_hfzip,' ');
+      }else{
+        return seek_char(arb->fd,fichier_hfzip,' ');
+      }
+    }else{
+      if(fgetc(fichier_hfzip) =='0'){
+        return seek_char(arb->fg,fichier_hfzip,' ');
+      }else{
+        return seek_char(arb->fd,fichier_hfzip,' ');
+      }
+    }
+  }
 
 }
+
+void decode(arbre huff, char* path_hfzip, char* path_file){
+  FILE* fichier_hfzip = fopen(path_hfzip,"r");
+  FILE* fichier_new = fopen(path_file,"w+");
+
+  char curent = fgetc(fichier_hfzip);
+  char next = getc(fichier_hfzip);
+
+  while(!((curent=='\n') && (next !=':'))){
+
+
+    curent = next;
+    next = getc(fichier_hfzip);
+  }
+  curent = next;
+
+  while(curent != EOF){
+    fprintf(fichier_new, "%c", seek_char(huff,fichier_hfzip,curent));
+    curent = getc(fichier_hfzip);
+  }
+
+
+
+  fclose(fichier_hfzip);
+  fclose(fichier_new);
+}
+
 
 /* *************************************************** */
 /*             Focntions suplémentaires                */
 /* *************************************************** */
 
-int ChartoInt(char* str){
+int StrtoInt(char* str){
   int taille = strlen(str);
   int res =0;
   for(int i= 0;i<taille;i++){
     switch (str[i]){
       case '1':
-        res += 1*power(10,i);
+        res = res+ 1*power(10,taille-1-i);
         break;
       case '2':
-        res += 2*power(10,i);
+        res = res+ 2*power(10,taille-1-i);
         break;
       case '3':
-        res += 3*power(10,i);
+        res = res+ 3*power(10,taille-1-i);
         break;
       case '4':
-        res += 4*power(10,i);
+        res = res+ 4*power(10,taille-1-i);
         break;
       case '5':
-        res += 5*power(10,i);
+        res = res+ 5*power(10,taille-1-i);
         break;
       case '6':
-        res += 6*power(10,i);
+        res = res+ 6*power(10,taille-1-i);
         break;
       case '7':
-        res += 7*power(10,i);
+        res = res+ 7*power(10,taille-1-i);
         break;
       case '8':
-        res += 8*power(10,i);
+        res = res+ 8*power(10,taille-1-i);
         break;
       case '9':
-        res += 9*power(10,i);
+        res = res+ 9*power(10,taille-1-i);
         break;
       default :
-        res += 0;
+        res = res+ 0;
         break;
     }
   }
   return res;
 }
 
+char* ChartoStr(char c){
+  char* str = (char*) malloc(sizeof(char));
+  str[0] =c;
+  return str;
+}
+
 int power(int a,int b){
+  if(b==0){
+    return 1;
+  }
   int res=a;
   for(int i=1;i<b;i++){
     res = res*a;

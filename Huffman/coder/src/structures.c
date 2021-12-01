@@ -10,9 +10,9 @@
 /* *************************************************** */
 
 arbre* alloc_arb(int taille){
-  arbre* tab = malloc(taille * sizeof(arbre));
+  arbre* tab =(arbre*) malloc(taille * sizeof(arbre));
   for(int i=0;i<taille;i++){
-    tab[i]=malloc(sizeof(noeud));
+    tab[i]=(arbre) malloc(sizeof(noeud));
   }
   return tab;
 }
@@ -25,7 +25,7 @@ void Free_Tab_arb(arbre* tab,int taille){
 }
 
 arbre CreerArbre(lettre l, arbre filsgauche ,arbre filsdroit){
-  arbre a = malloc(sizeof(noeud));
+  arbre a =(arbre) malloc(sizeof(noeud));
   a->val = l;
   a->fg = filsgauche;
   a->fd = filsdroit;
@@ -46,7 +46,7 @@ int EstFeuille(arbre a){
 /* *************************************************** */
 
 lettre* alloc_let(int taille){
-  lettre* tab = malloc(taille * sizeof(lettre));
+  lettre* tab =(lettre*) malloc(taille * sizeof(lettre));
   return tab;
 }
 

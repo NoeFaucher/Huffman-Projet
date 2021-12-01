@@ -88,6 +88,14 @@ void init_code(arbre huff, lettre* tab, int taille_tab){
   }
 }
 
+void cp_abr_let(arbre* tab_abr, lettre* tab_let, int taille){
+  for(int i =0;i<taille;i++){
+    tab_let[i].caractere = tab_abr[i]->val.caractere;
+    tab_let[i].occ = tab_abr[i]->val.occ;
+    tab_let[i].code = tab_abr[i]->val.code;
+  }
+}
+
 void file_header(lettre* tab,int taille,char* path_dest){
   FILE* fichier_hfzip = fopen(path_dest,"w+");
   for(int i=0;i<taille-1;i++){
@@ -136,11 +144,11 @@ void Aff_infixe(arbre a){
   }
 }
 
-void Aff_tab(lettre* tab,int taille){
+void Aff_tab(arbre* tab,int taille){
   for(int i=0;i<taille;i++){
-    printf("%c : %d \n",tab[i].caractere,tab[i].occ);
+    //printf("%c : %d \n",tab[i].caractere,tab[i].occ);
     //printf("%c : %d , %s\n",tab[i].caractere,tab[i].occ,tab[i].code);
-    //printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
+    printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
   }
   printf("\n");
 }

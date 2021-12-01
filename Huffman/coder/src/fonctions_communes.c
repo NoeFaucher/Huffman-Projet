@@ -46,24 +46,12 @@ ArbreFromTab_R(tab,taille);
   return ArbreFromTab_R(tab,taille)[0];
 }
 
-/* *************************************************** */
-/*       Focntions sur les tableaus de lettres         */
-/* *************************************************** */
-
-void cp_let_arb(arbre* tab_abr, lettre* tab_let, int taille){
-  for(int i =0;i<taille;i++){
-    tab_let[i].caractere = tab_abr[i]->val.caractere;
-    tab_let[i].occ = tab_abr[i]->val.occ;
-    tab_let[i].code = tab_abr[i]->val.code;
-  }
-}
 
 /* *************************************************** */
 /*             Focntions suplémentaires                */
 /* *************************************************** */
 
 char* Append(char* a,char* b){
-
   if(a == ""){
     return b;
   }
@@ -74,7 +62,8 @@ char* Append(char* a,char* b){
   int taille_b = strlen(b);
 
   int taille_res = taille_a +taille_b;
-  char* res = malloc(taille_res*sizeof(char));
+
+  char* res = (char*) malloc(taille_res*sizeof(char));
 
   for(int i=0;i<taille_a;i++){
     res[i]=a[i];

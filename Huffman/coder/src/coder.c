@@ -42,9 +42,9 @@ int coder(char* path_file,char* path_hfzip) {
   //Aff_tab(tab_arb,new_taille);
   //
 
-  cp_let_arb(tab_arb,tab_let,new_taille);
+  cp_abr_let(tab_arb,tab_let,new_taille);
 
-  arbre arb_huff = malloc(sizeof(noeud));
+  arbre arb_huff =(arbre) malloc(sizeof(noeud));
   arb_huff = ArbreFromTab(tab_arb,new_taille);
 
 
