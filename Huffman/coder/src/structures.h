@@ -4,7 +4,7 @@
 /* Structures lettre et structure arbre
  *
  * Fonctions liées aux structures.
- * 
+ *
  */
 
 /*

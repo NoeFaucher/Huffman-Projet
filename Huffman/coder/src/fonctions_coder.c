@@ -9,7 +9,7 @@
 /*         Focntions sur les tableaus d'arbres        */
 /* *************************************************** */
 
-void compte_occ_carac(char l, arbre* tab, int taille){
+void ajout_occ_carac(char l, arbre* tab, int taille){
   char* sample = SAMPLE;
   for(int i =0; i < taille;i++){
     if(l == sample[i]){
@@ -27,7 +27,7 @@ void compte_occ_txt(char* path, arbre* tab, int taille){
     char caractere;
     do{
       caractere = fgetc(fichier);
-      compte_occ_carac(caractere,tab,taille);
+      ajout_occ_carac(caractere,tab,taille);
     }while(caractere != EOF);
 
     fclose(fichier);
@@ -141,6 +141,8 @@ void Aff_infixe(arbre a){
     Aff_infixe(a->fg);
     printf("%d ",a->val.occ);
     Aff_infixe(a->fd);
+  }else{
+    printf("NULL ");
   }
 }
 
@@ -148,7 +150,12 @@ void Aff_tab(arbre* tab,int taille){
   for(int i=0;i<taille;i++){
     //printf("%c : %d \n",tab[i].caractere,tab[i].occ);
     //printf("%c : %d , %s\n",tab[i].caractere,tab[i].occ,tab[i].code);
-    printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
+    //printf("%d : %d \n",i,tab[i]->val.occ);
+    //printf("%c : %d \n",tab[i]->val.caractere,tab[i]->val.occ);
+    printf("%d : ",i);
+    Aff_infixe(tab[i]);
+    printf("\n");
+
   }
   printf("\n");
 }

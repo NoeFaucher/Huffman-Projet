@@ -83,8 +83,9 @@ void read_file_header(lettre* tab,char* path_file){
 void cp_let_arb(lettre* tab_let, arbre* tab_abr, int taille){
   for(int i =0;i<taille;i++){
     tab_abr[i]->val.caractere = tab_let[i].caractere;
-
     tab_abr[i]->val.occ = tab_let[i].occ;
+    tab_abr[i]->fg = NULL;
+    tab_abr[i]->fd = NULL;
   }
 }
 

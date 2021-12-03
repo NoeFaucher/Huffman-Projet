@@ -47,7 +47,7 @@ int coder(char* path_file,char* path_hfzip) {
   arbre arb_huff =(arbre) malloc(sizeof(noeud));
   arb_huff = ArbreFromTab(tab_arb,new_taille);
 
-
+  Aff_infixe(arb_huff);
 
   init_code(arb_huff,tab_let,new_taille);
 

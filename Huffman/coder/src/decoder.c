@@ -10,10 +10,7 @@ int decoder(char* path_hfzip, char* path_file){
 
   lettre* tab_let = alloc_let(taille_tab);
 
-  //printf("test \"5\" + \"54\" = %s\n",Append("5","52"));
-
   read_file_header(tab_let,path_hfzip);
-
 
   //Récupération du tableau de puis l'entete du fichier
   if(tab_let == NULL){
@@ -23,14 +20,16 @@ int decoder(char* path_hfzip, char* path_file){
   //Création de l'arbre d'Huffman
 
   arbre* tab_abr = alloc_arb(taille_tab);
+
   arbre huff;
 
   cp_let_arb(tab_let,tab_abr,taille_tab);
 
+  //Aff_tab(tab_abr,taille_tab);
+
   huff = ArbreFromTab(tab_abr,taille_tab);
 
-  Aff_infixe(huff);
-  printf("\n");
+  //Aff_infixe(huff);
 
   if(huff == NULL){
     printf("Erreur dans la création de l'arbre d'Huffman.\n");
