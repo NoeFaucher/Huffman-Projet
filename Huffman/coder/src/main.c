@@ -6,7 +6,6 @@
 #include "coder.h"
 #include "decoder.h"
 #include "fonctions_communes.h"
-//#define SAMPLE " etaonihsrldumcwyfgpbvkjxqz!\"#$%&\'()*+,-./0123456789:;>=<?@{}|~[]_^ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 int main(int argc, char* argv[] ) {
   printf("argc : %d\n",argc);
