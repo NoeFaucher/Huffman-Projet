@@ -6,7 +6,7 @@
 
 
 /* *************************************************** */
-/*         Focntions sur les tableaus d'arbres         */
+/*         Fonctions sur les tableaux d'arbres         */
 /* *************************************************** */
 
 arbre* ArbreFromTab_R(arbre* tab,int taille){
@@ -48,7 +48,7 @@ ArbreFromTab_R(tab,taille);
 
 
 /* *************************************************** */
-/*             Focntions suplémentaires                */
+/*             Fonctions suplémentaires                */
 /* *************************************************** */
 
 char* Append(char* a,char* b){
