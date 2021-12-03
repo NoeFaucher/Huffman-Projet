@@ -6,7 +6,7 @@
 
 
 /* *************************************************** */
-/*         Focntions sur les tableaus d'arbres        */
+/*         Fonctions sur les tableaux d'arbres        */
 /* *************************************************** */
 
 void ajout_occ_carac(char l, arbre* tab, int taille){
@@ -79,7 +79,7 @@ char* seek_code(arbre a,lettre l,char* code){
 }
 
 /* *************************************************** */
-/*       Focntions sur les tableaus de lettres         */
+/*       Fonctions sur les tableaux de lettres         */
 /* *************************************************** */
 
 void init_code(arbre huff, lettre* tab, int taille_tab){
@@ -133,7 +133,7 @@ void encoder(lettre* tab, int taille, char* path_src, char* path_dest){
 }
 
 /* *************************************************** */
-/*             Focntions suplémentaires                */
+/*             Fonctions supplémentaires                */
 /* *************************************************** */
 
 void Aff_infixe(arbre a){
