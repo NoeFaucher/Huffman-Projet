@@ -21,7 +21,7 @@ int coder(char* path_file,char* path_hfzip) {
     return -1;
   }
 
-  //TRI LE TABLEAU EN FONCTION DU NOMBRE OCCURENCE
+  // TRI LE TABLEAU EN FONCTION DU NOMBRE D'OCCURENCE
   trirapid(tab_arb_temp,0,taille-1);
 
 
