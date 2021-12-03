@@ -6,7 +6,7 @@
 
 
 /* *************************************************** */
-/*       Focntions sur les tableaus de lettres         */
+/*       Fonctions sur les tableaux de lettres         */
 /* *************************************************** */
 
 int compteur_tab(char* path_file){
@@ -77,7 +77,7 @@ void read_file_header(lettre* tab,char* path_file){
 
 
 /* *************************************************** */
-/*       Focntions sur les tableaus d'arbres           */
+/*       Fonctions sur les tableaux d'arbres           */
 /* *************************************************** */
 
 void cp_let_arb(lettre* tab_let, arbre* tab_abr, int taille){
@@ -91,7 +91,7 @@ void cp_let_arb(lettre* tab_let, arbre* tab_abr, int taille){
 
 
 /* *************************************************** */
-/*               Focntions sur les arbres              */
+/*               Fonctions sur les arbres              */
 /* *************************************************** */
 
 char seek_char(arbre arb,FILE* fichier_hfzip,char last){
@@ -143,7 +143,7 @@ void decode(arbre huff, char* path_hfzip, char* path_file){
 
 
 /* *************************************************** */
-/*             Focntions suplémentaires                */
+/*             Fonctions supplémentaires                */
 /* *************************************************** */
 
 int StrtoInt(char* str){
