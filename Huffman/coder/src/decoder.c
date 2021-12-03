@@ -12,7 +12,7 @@ int decoder(char* path_hfzip, char* path_file){
 
   read_file_header(tab_let,path_hfzip);
 
-  //Récupération du tableau depuis l'entete du fichier
+  //Récupération du tableau depuis l'en tête du fichier
   if(tab_let == NULL){
     printf("Erreur dans la récuperation du tableau d'iteration.\n");
     return -1;
