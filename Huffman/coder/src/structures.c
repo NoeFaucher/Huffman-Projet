@@ -6,7 +6,7 @@
 
 
 /* *************************************************** */
-/*         Focntions pour les tableaus d'arbres        */
+/*         Fonctions pour les tableaux d'arbres        */
 /* *************************************************** */
 
 arbre* alloc_arb(int taille){
@@ -42,7 +42,7 @@ int EstFeuille(arbre a){
 }
 
 /* *************************************************** */
-/*       Focntions pour les tableaus de lettres        */
+/*       Fonctions pour les tableaux de lettres        */
 /* *************************************************** */
 
 lettre* alloc_let(int taille){
